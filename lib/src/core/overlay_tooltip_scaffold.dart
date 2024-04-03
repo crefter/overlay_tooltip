@@ -107,29 +107,31 @@ class _TooltipLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     var topLeft = model.widgetKey.globalPaintBounds!.topLeft;
     var bottomRight = model.widgetKey.globalPaintBounds!.bottomRight;
+    var tTopLeft = topLeft;
+    var tBottomRight = bottomRight;
 
     return LayoutBuilder(builder: (context, size) {
-      // if (topLeft.dx < 0) {
-      //   bottomRight = Offset(bottomRight.dx + (0 - topLeft.dx), bottomRight.dy);
-      //   topLeft = Offset(0, topLeft.dy);
-      // }
+      if (topLeft.dx < 0) {
+        tBottomRight = Offset(bottomRight.dx + (0 - topLeft.dx), bottomRight.dy);
+        tTopLeft = Offset(0, topLeft.dy);
+      }
 
-      // if (bottomRight.dx > size.maxWidth) {
-      //   topLeft =
-      //       Offset(topLeft.dx - (bottomRight.dx - size.maxWidth), topLeft.dy);
-      //   bottomRight = Offset(size.maxWidth, bottomRight.dy);
-      // }
+      if (bottomRight.dx > size.maxWidth) {
+        tTopLeft =
+            Offset(topLeft.dx - (bottomRight.dx - size.maxWidth), topLeft.dy);
+        tBottomRight = Offset(size.maxWidth, bottomRight.dy);
+      }
 
-      // if (topLeft.dy < 0) {
-      //   bottomRight = Offset(bottomRight.dx, bottomRight.dy + (0 - topLeft.dy));
-      //   topLeft = Offset(topLeft.dx, 0);
-      // }
+      if (topLeft.dy < 0) {
+        tBottomRight = Offset(bottomRight.dx, bottomRight.dy + (0 - topLeft.dy));
+        tTopLeft = Offset(topLeft.dx, 0);
+      }
 
-      // if (bottomRight.dy > size.maxHeight) {
-      //   topLeft =
-      //       Offset(topLeft.dx, topLeft.dy - (bottomRight.dy - size.maxHeight));
-      //   bottomRight = Offset(bottomRight.dx, size.maxHeight);
-      // }
+      if (bottomRight.dy > size.maxHeight) {
+        tTopLeft =
+            Offset(topLeft.dx, topLeft.dy - (bottomRight.dy - size.maxHeight));
+        tBottomRight = Offset(bottomRight.dx, size.maxHeight);
+      }
 
       return Stack(
         fit: StackFit.expand,
@@ -142,7 +144,7 @@ class _TooltipLayout extends StatelessWidget {
             child: AbsorbPointer(
                 child: model.child, absorbing: model.absorbPointer),
           ),
-          _buildToolTip(topLeft, bottomRight, size)
+          _buildToolTip(tTopLeft, tBottomRight, size)
         ],
       );
     });
