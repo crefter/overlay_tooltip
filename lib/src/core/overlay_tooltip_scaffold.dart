@@ -109,27 +109,27 @@ class _TooltipLayout extends StatelessWidget {
     var bottomRight = model.widgetKey.globalPaintBounds!.bottomRight;
 
     return LayoutBuilder(builder: (context, size) {
-      if (topLeft.dx < 0) {
-        bottomRight = Offset(bottomRight.dx + (0 - topLeft.dx), bottomRight.dy);
-        topLeft = Offset(0, topLeft.dy);
-      }
+      // if (topLeft.dx < 0) {
+      //   bottomRight = Offset(bottomRight.dx + (0 - topLeft.dx), bottomRight.dy);
+      //   topLeft = Offset(0, topLeft.dy);
+      // }
 
-      if (bottomRight.dx > size.maxWidth) {
-        topLeft =
-            Offset(topLeft.dx - (bottomRight.dx - size.maxWidth), topLeft.dy);
-        bottomRight = Offset(size.maxWidth, bottomRight.dy);
-      }
+      // if (bottomRight.dx > size.maxWidth) {
+      //   topLeft =
+      //       Offset(topLeft.dx - (bottomRight.dx - size.maxWidth), topLeft.dy);
+      //   bottomRight = Offset(size.maxWidth, bottomRight.dy);
+      // }
 
-      if (topLeft.dy < 0) {
-        bottomRight = Offset(bottomRight.dx, bottomRight.dy + (0 - topLeft.dy));
-        topLeft = Offset(topLeft.dx, 0);
-      }
+      // if (topLeft.dy < 0) {
+      //   bottomRight = Offset(bottomRight.dx, bottomRight.dy + (0 - topLeft.dy));
+      //   topLeft = Offset(topLeft.dx, 0);
+      // }
 
-      if (bottomRight.dy > size.maxHeight) {
-        topLeft =
-            Offset(topLeft.dx, topLeft.dy - (bottomRight.dy - size.maxHeight));
-        bottomRight = Offset(bottomRight.dx, size.maxHeight);
-      }
+      // if (bottomRight.dy > size.maxHeight) {
+      //   topLeft =
+      //       Offset(topLeft.dx, topLeft.dy - (bottomRight.dy - size.maxHeight));
+      //   bottomRight = Offset(bottomRight.dx, size.maxHeight);
+      // }
 
       return Stack(
         fit: StackFit.expand,
