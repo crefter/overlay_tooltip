@@ -132,7 +132,7 @@ class _TooltipLayout extends StatelessWidget {
       // }
 
       return Stack(
-        fit: StackFit.loose,
+        fit: StackFit.expand,
         children: [
           Positioned(
             top: topLeft.dy,
